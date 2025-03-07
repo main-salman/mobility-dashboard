@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Urban Mobility Dashboard
+
+A Next.js application for city planners and administrators to visualize and analyze urban mobility patterns using Google Maps API and Google Places API.
+
+## Features
+
+- **City Selection**: Choose from multiple cities (Vancouver, Madinah, Delhi, Lahore) or search for any city
+- **Time Range Selection**: View data from the past week, month, year, or a custom time range
+- **Cultural Site Visualization**: Blue markers indicate important cultural sites in each city
+- **Crowd Density Heatmaps**: Visual representation of crowd density in different areas
+- **Day/Night Activity Analysis**: Compare activity patterns between day and night to assess safety
+- **Interactive Map**: Click anywhere to get detailed analytics for specific areas
+- **City Metrics**: View key statistics like day/night ratio, peak hours, and estimated visitor counts
+
+## Technology Stack
+
+- **Frontend**: Next.js with TypeScript and Tailwind CSS
+- **Maps**: Google Maps JavaScript API, Google Places API
+- **Data Visualization**: Heatmaps for crowd density
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.17 or later
+- Google Maps API key with Places API and Maps JavaScript API enabled
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd mobility-dashboard
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. Create a `.env.local` file with your Google Maps API key:
+   ```
+   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_google_maps_api_key
+   NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID=your_google_maps_map_id
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1. **Select a City**: Choose from the predefined cities or search for a specific location
+2. **Choose a Time Range**: Select the period for which you want to view mobility data
+3. **Explore the Map**: 
+   - Blue markers indicate cultural sites - click on them for site-specific information
+   - The heatmap shows crowd density throughout the city
+   - Click anywhere on the map to analyze that specific area
+4. **View City Metrics**: Scroll down to see detailed statistics about the city's mobility patterns
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Notes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This is a demonstration application that uses simulated data
+- In a production environment, this would connect to real Google Maps Platform data sources
+- The application is designed for desktop use primarily, as requested in the requirements
+
+## Future Enhancements
+
+- Integration with real-time Google Maps traffic data
+- Additional visualization types (flow lines, time-series graphs)
+- Demographic filtering capabilities
+- Report generation feature
+- Comparative analysis between different cities or time periods
+
+## License
+
+This project is licensed under the MIT License.
