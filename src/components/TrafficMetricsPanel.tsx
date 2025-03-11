@@ -8,10 +8,12 @@ interface TrafficMetricsPanelProps {
 }
 
 const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
-  const [selectedSeason, setSelectedSeason] = useState<'current' | 'summer' | 'winter' | 'spring' | 'fall'>('current');
+  const [selectedSeason, setSelectedSeason] = useState<
+    'current' | 'summer' | 'winter' | 'spring' | 'fall'
+  >('current');
   const [currentCityName, setCurrentCityName] = useState('');
   const [refreshTrigger, setRefreshTrigger] = useState(0);
-  
+
   // When the city changes, update the data
   useEffect(() => {
     if (currentCityName !== selectedCity.name) {
@@ -19,13 +21,13 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
       setRefreshTrigger(prev => prev + 1);
     }
   }, [selectedCity.name, currentCityName]);
-  
+
   // Generate random metrics data when city changes
   useEffect(() => {
     // Re-render component with new random data
     // This is just a dummy effect to trigger re-renders
   }, [refreshTrigger]);
-  
+
   // Mock data - in a real application, this would come from Google Maps Traffic API
   const trafficMetrics = {
     current: {
@@ -33,71 +35,71 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
       congestionLevel: Math.floor(Math.random() * 40) + 40, // 40-80%
       peakHours: {
         morning: '7:30 AM - 9:30 AM',
-        evening: '4:30 PM - 6:30 PM'
+        evening: '4:30 PM - 6:30 PM',
       },
       busyCrossings: [
         `${selectedCity.name} Main St & 5th Ave`,
         `${selectedCity.name} Park Road & Commerce St`,
-        `${selectedCity.name} Central Avenue & Market St`
+        `${selectedCity.name} Central Avenue & Market St`,
       ],
-      congestionTrend: Math.random() > 0.5 ? 'increasing' : 'decreasing'
+      congestionTrend: Math.random() > 0.5 ? 'increasing' : 'decreasing',
     },
     summer: {
       averageSpeed: Math.floor(Math.random() * 20) + 20, // 20-40 km/h
       congestionLevel: Math.floor(Math.random() * 30) + 30, // 30-60%
       peakHours: {
         morning: '8:00 AM - 9:30 AM',
-        evening: '4:00 PM - 6:00 PM'
+        evening: '4:00 PM - 6:00 PM',
       },
       busyCrossings: [
         'Beach Road & Coastal Highway',
         'Tourist Center & Downtown Crossing',
-        'Central Park & Main St'
+        'Central Park & Main St',
       ],
-      congestionTrend: 'increasing'
+      congestionTrend: 'increasing',
     },
     winter: {
       averageSpeed: Math.floor(Math.random() * 15) + 10, // 10-25 km/h
       congestionLevel: Math.floor(Math.random() * 20) + 60, // 60-80%
       peakHours: {
         morning: '7:00 AM - 9:00 AM',
-        evening: '3:30 PM - 5:30 PM'
+        evening: '3:30 PM - 5:30 PM',
       },
       busyCrossings: [
         'Main St & 5th Ave',
         'School Zone & Residential Area',
-        'Shopping District & Highway Exit'
+        'Shopping District & Highway Exit',
       ],
-      congestionTrend: 'decreasing'
+      congestionTrend: 'decreasing',
     },
     spring: {
       averageSpeed: Math.floor(Math.random() * 15) + 18, // 18-33 km/h
       congestionLevel: Math.floor(Math.random() * 30) + 40, // 40-70%
       peakHours: {
         morning: '7:30 AM - 9:00 AM',
-        evening: '4:00 PM - 6:00 PM'
+        evening: '4:00 PM - 6:00 PM',
       },
       busyCrossings: [
         'Park Entrance & Boulevard',
         'University District & Transit Hub',
-        'Commercial District & Main St'
+        'Commercial District & Main St',
       ],
-      congestionTrend: 'stable'
+      congestionTrend: 'stable',
     },
     fall: {
       averageSpeed: Math.floor(Math.random() * 18) + 17, // 17-35 km/h
       congestionLevel: Math.floor(Math.random() * 25) + 45, // 45-70%
       peakHours: {
         morning: '7:30 AM - 9:30 AM',
-        evening: '4:30 PM - 6:00 PM'
+        evening: '4:30 PM - 6:00 PM',
       },
       busyCrossings: [
         'School Zone & Residential Area',
         'Shopping District & Business Park',
-        'Downtown & Transit Hub'
+        'Downtown & Transit Hub',
       ],
-      congestionTrend: 'increasing'
-    }
+      congestionTrend: 'increasing',
+    },
   };
 
   const currentData = trafficMetrics[selectedSeason];
@@ -107,9 +109,9 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Traffic Congestion Metrics</h2>
         <div className="flex space-x-2">
-          <select 
+          <select
             value={selectedSeason}
-            onChange={(e) => setSelectedSeason(e.target.value as any)}
+            onChange={e => setSelectedSeason(e.target.value as any)}
             className="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="current">Current Season</option>
@@ -129,17 +131,23 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
             <span className="text-lg ml-1 text-gray-600">km/h</span>
           </div>
           <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className={`h-2 rounded-full ${
-                currentData.averageSpeed < 15 ? 'bg-red-500' : 
-                currentData.averageSpeed < 25 ? 'bg-yellow-500' : 'bg-green-500'
-              }`} 
+                currentData.averageSpeed < 15
+                  ? 'bg-red-500'
+                  : currentData.averageSpeed < 25
+                    ? 'bg-yellow-500'
+                    : 'bg-green-500'
+              }`}
               style={{ width: `${(currentData.averageSpeed / 50) * 100}%` }}
             ></div>
           </div>
           <p className="text-sm text-gray-600 mt-1">
-            {currentData.averageSpeed < 15 ? 'Severe congestion' : 
-             currentData.averageSpeed < 25 ? 'Moderate traffic' : 'Good flow'}
+            {currentData.averageSpeed < 15
+              ? 'Severe congestion'
+              : currentData.averageSpeed < 25
+                ? 'Moderate traffic'
+                : 'Good flow'}
           </p>
         </div>
 
@@ -149,11 +157,14 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
             <span className="text-3xl font-bold">{currentData.congestionLevel}%</span>
           </div>
           <div className="mt-2 w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className={`h-2 rounded-full ${
-                currentData.congestionLevel > 70 ? 'bg-red-500' : 
-                currentData.congestionLevel > 40 ? 'bg-yellow-500' : 'bg-green-500'
-              }`} 
+                currentData.congestionLevel > 70
+                  ? 'bg-red-500'
+                  : currentData.congestionLevel > 40
+                    ? 'bg-yellow-500'
+                    : 'bg-green-500'
+              }`}
               style={{ width: `${currentData.congestionLevel}%` }}
             ></div>
           </div>
@@ -199,10 +210,14 @@ const TrafficMetricsPanel = ({ selectedCity }: TrafficMetricsPanelProps) => {
 
       <div className="mt-5 p-3 bg-blue-50 text-blue-700 text-sm rounded-md">
         <p className="font-medium">For City Officials:</p>
-        <p>This data can help prioritize traffic management resources and plan roadwork during off-peak hours. Compare seasonal patterns to prepare for expected changes throughout the year.</p>
+        <p>
+          This data can help prioritize traffic management resources and plan roadwork during
+          off-peak hours. Compare seasonal patterns to prepare for expected changes throughout the
+          year.
+        </p>
       </div>
     </div>
   );
 };
 
-export default TrafficMetricsPanel; 
+export default TrafficMetricsPanel;

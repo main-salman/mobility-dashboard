@@ -1,0 +1,26 @@
+# Ignore build outputs
+.next/
+out/
+build/
+dist/
+
+# Ignore dependencies
+node_modules/
+
+# Ignore generated files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Ignore public assets
+public/
+
+# Ignore environment files
+.env*
+!.env.example
+
+# Ignore coverage reports
+coverage/
+
+# Ignore VS Code settings
+.vscode/ 

@@ -6,7 +6,20 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,html,css}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@googlemaps/js-api-loader": "^1.16.8",
@@ -15,7 +28,8 @@
     "date-fns-tz": "^3.2.0",
     "next": "15.2.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -23,8 +37,15 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^9.22.0",
     "eslint-config-next": "15.2.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.2",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

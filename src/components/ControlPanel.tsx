@@ -13,30 +13,40 @@ interface ControlPanelProps {
   CitySearchComponent?: React.ComponentType<any>;
 }
 
-const ControlPanel = ({ 
-  onCityChange, 
-  onTimeRangeChange, 
-  selectedCity, 
+const ControlPanel = ({
+  onCityChange,
+  onTimeRangeChange,
+  selectedCity,
   selectedTimeRange,
-  CitySearchComponent
+  CitySearchComponent,
 }: ControlPanelProps) => {
   const [isOpen, setIsOpen] = useState(true);
-  
+
   // Use the provided component or fall back to the default
   const SearchComponent = CitySearchComponent || CitySearch;
 
   return (
-    <div className={`bg-white shadow-lg rounded-lg p-4 md:p-6 ${isOpen ? 'w-full md:w-80' : 'w-12'} transition-all duration-300`}>
+    <div
+      className={`bg-white shadow-lg rounded-lg p-4 md:p-6 ${isOpen ? 'w-full md:w-80' : 'w-12'} transition-all duration-300`}
+    >
       {isOpen ? (
         <>
           <div className="flex justify-between items-center mb-4">
             <h2 className="text-xl font-bold">Dashboard Controls</h2>
-            <button 
-              onClick={() => setIsOpen(false)}
-              className="text-gray-500 hover:text-gray-700"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -44,10 +54,10 @@ const ControlPanel = ({
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Search City</h3>
             <SearchComponent onCitySelect={onCityChange} />
-            
+
             <h3 className="text-lg font-semibold mt-4 mb-2">Quick Select</h3>
             <div className="grid grid-cols-2 gap-2">
-              {DEFAULT_CITIES.map((city) => (
+              {DEFAULT_CITIES.map(city => (
                 <button
                   key={city.name}
                   onClick={() => onCityChange(city)}
@@ -66,7 +76,7 @@ const ControlPanel = ({
           <div className="mb-6">
             <h3 className="text-lg font-semibold mb-2">Time Range</h3>
             <div className="grid grid-cols-2 gap-2">
-              {TIME_RANGES.map((timeRange) => (
+              {TIME_RANGES.map(timeRange => (
                 <button
                   key={timeRange.id}
                   onClick={() => onTimeRangeChange(timeRange)}
@@ -110,12 +120,23 @@ const ControlPanel = ({
           </div>
         </>
       ) : (
-        <button 
+        <button
           onClick={() => setIsOpen(true)}
           className="w-full h-full flex items-center justify-center"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
           </svg>
         </button>
       )}
@@ -123,4 +144,4 @@ const ControlPanel = ({
   );
 };
 
-export default ControlPanel; 
+export default ControlPanel;
